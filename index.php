@@ -10,15 +10,14 @@ $config = [
 ];
 
 try {
-    $db = new PDO(
-        "mysql:host={$config['host']};dbname={$config['db']};charset=utf8mb4",
-        $config['user'],
-        $config['pass'],
-        [
-            PDO::MYSQL_ATTR_SSL_CA => '/etc/ssl/certs/ca-certificates.crt',
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ]
-    );
+$pdo = new PDO(
+    "mysql:host=$host;dbname=$dbname;charset=utf8",
+    $user,
+    $pass,
+    [
+        PDO::MYSQL_ATTR_SSL_CA => '/home/site/wwwroot/DigiCertGlobalRootCA.crt.pem'
+    ]
+);
 } catch (PDOException $err) {
     die("Database connection failed : " . $err->getMessage());
 }
